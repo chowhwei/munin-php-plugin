@@ -8,6 +8,11 @@ namespace Chowhwei\MuninPhpPlugin;
  */
 class Graph
 {
+    const FIELD_TYPE_GAUGE = 'GAUGE';
+    const FIELD_TYPE_COUNTER = 'COUNTER';
+    const FIELD_TYPE_DERIVE = 'DERIVE';
+    const FIELD_TYPE_ABSOLUTE = 'ABSOLUTE';
+
     protected $graph;
     protected $graph_args;
     protected $graph_category;
@@ -58,7 +63,7 @@ class Graph
         return $this;
     }
 
-    public function appendFieldEx($name, $type, $label, $value)
+    public function appendFieldEx($name, $label, $value, $type = Graph::FIELD_TYPE_GAUGE)
     {
         $this->appendField((new Field($name))->setType($type)->setLabel($label)->setValue($value));
         return $this;
