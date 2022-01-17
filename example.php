@@ -1,21 +1,25 @@
 <?php
 
-require_once 'vendor/autoload.php';
+require_once 'autoload.php';
 
-use MuninPlugin\Graph;
-use MuninPlugin\Datasource;
+use Chowhwei\MuninPhpPlugin\Graph;
+use Chowhwei\MuninPhpPlugin\Datasource;
 
 $graph = (new Graph('MyGraph'))
-    ->setVLabel('My Vlabel')
+    ->setVLable('My Vlabel')
     ->setCategory('My Category');
 
 
-$datasource = (new Datasource('mydata'))
+$dataSource = (new Datasource('mydata'))
     ->setLabel('My Data')
     ->setValue('foo');
+$dataSource2 = (new Datasource('mydata2'))
+    ->setLabel('My Data 2')
+    ->setValue(12345);
 
 
-$graph->getDatasourceSet()->append($datasource);
+$graph->getDataSourceSet()->append($dataSource);
+$graph->getDataSourceSet()->append($dataSource2);
 
 
 echo 'Config:'.PHP_EOL;
