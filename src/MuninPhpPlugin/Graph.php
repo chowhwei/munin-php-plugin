@@ -58,9 +58,9 @@ class Graph
         return $this;
     }
 
-    public function appendFieldEx($name, $label, $value)
+    public function appendFieldEx($name, $type, $label, $value)
     {
-        $this->appendField((new Field($name))->setLabel($label)->setValue($value));
+        $this->appendField((new Field($name))->setType($type)->setLabel($label)->setValue($value));
         return $this;
     }
 
