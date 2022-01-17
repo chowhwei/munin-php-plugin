@@ -4,14 +4,15 @@ namespace Chowhwei\MuninPhpPlugin;
 
 use ArrayObject;
 
-class DataSourceSet extends ArrayObject
+class Fields extends ArrayObject
 {
     public function getValues()
     {
         $output = [];
 
-        foreach ($this as $datasource) {
-            $output[] = $datasource->getName() . '.value ' . $datasource->getValue();
+        /** @var Field $field */
+        foreach ($this as $field) {
+            $output[] = "{$field->getName()}.value {$field->getValue()}";
         }
 
         return implode(PHP_EOL, $output);

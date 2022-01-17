@@ -3,27 +3,21 @@
 require_once 'autoload.php';
 
 use Chowhwei\MuninPhpPlugin\Graph;
-use Chowhwei\MuninPhpPlugin\Datasource;
+use Chowhwei\MuninPhpPlugin\Field;
 
-$graph = (new Graph('MyGraph'))
-    ->setVLable('My Vlabel')
-    ->setCategory('My Category');
+$graph = (new Graph('MyGraph', 'My Category'))
+    ->setGraphVlabel('My Vlabel');
 
-
-$dataSource = (new Datasource('mydata'))
+$dataSource = (new Field('mydata'))
     ->setLabel('My Data')
     ->setValue('foo');
-$dataSource2 = (new Datasource('mydata2'))
-    ->setLabel('My Data 2')
-    ->setValue(12345);
 
 
-$graph->getDataSourceSet()->append($dataSource);
-$graph->getDataSourceSet()->append($dataSource2);
-
+$graph->appendField($dataSource)
+    ->appendFieldEx('mydata', 'my data2', 'foo2');
 
 echo 'Config:'.PHP_EOL;
 echo $graph->getConfig().PHP_EOL;
 echo PHP_EOL;
 echo 'Values:'.PHP_EOL;
-echo $graph->getDatasourceSet()->getValues().PHP_EOL;
+echo $graph->getValues().PHP_EOL;
