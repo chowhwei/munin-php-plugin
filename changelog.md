@@ -1,4 +1,5 @@
 * 2022-01-19
+ 1.0.4 add Graph::getField($name)
  1.0.3 add Graph::FIELD_DRAW
 
 * 2022-01-17 
