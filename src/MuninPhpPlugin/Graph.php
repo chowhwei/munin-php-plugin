@@ -13,6 +13,16 @@ class Graph
     const FIELD_TYPE_DERIVE = 'DERIVE';
     const FIELD_TYPE_ABSOLUTE = 'ABSOLUTE';
 
+    const FIELD_DRAW_LINE1 = 'LINE1';
+    const FIELD_DRAW_LINE2 = 'LINE2';
+    const FIELD_DRAW_LINE3 = 'LINE3';
+    const FIELD_DRAW_AREA = 'AREA';
+    const FIELD_DRAW_STACK = 'STACK';
+    const FIELD_DRAW_LINESTACK1 = 'LINESTACK1';
+    const FIELD_DRAW_LINESTACK2 = 'LINESTACK2';
+    const FIELD_DRAW_LINESTACK3 = 'LINESTACK3';
+    const FIELD_DRAW_AREASTACK = 'AREASTACK';
+
     protected $graph;
     protected $graph_args;
     protected $graph_category;
@@ -60,12 +70,6 @@ class Graph
     public function appendField(Field $field)
     {
         $this->fields->append($field);
-        return $this;
-    }
-
-    public function appendFieldEx($name, $label, $value, $type = Graph::FIELD_TYPE_GAUGE)
-    {
-        $this->appendField((new Field($name))->setType($type)->setLabel($label)->setValue($value));
         return $this;
     }
 

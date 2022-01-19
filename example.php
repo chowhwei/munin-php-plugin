@@ -6,15 +6,13 @@ use Chowhwei\MuninPhpPlugin\Graph;
 use Chowhwei\MuninPhpPlugin\Field;
 
 $graph = (new Graph('MyGraph', 'My Category'))
-    ->setGraphVlabel('My Vlabel');
+    ->setGraphVlabel('My Vlabel')
+    ->setGraphArgs('--lower-limit 0');
 
 $dataSource = (new Field('mydata'))
     ->setLabel('My Data')
-    ->setValue('foo');
-
-
-$graph->appendField($dataSource)
-    ->appendFieldEx('mydata', 'my data2', 'foo2');
+    ->setValue(1234)
+    ->setDraw(Graph::FIELD_DRAW_AREASTACK);
 
 echo 'Config:'.PHP_EOL;
 echo $graph->getConfig().PHP_EOL;
