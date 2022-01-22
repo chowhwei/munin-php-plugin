@@ -28,6 +28,7 @@ if (!file_exists($file)) {
 }
 
 if (count($data) > 0) {
+    ksort($data);
     foreach ($data as $status_code => $count) {
         $name = 'http-' . $status_code;
         $field = (new Field($name))
