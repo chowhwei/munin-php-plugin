@@ -43,7 +43,7 @@ class Field
             if (in_array($key, $this->filter)) {
                 continue;
             }
-            if(is_null($value)){
+            if (is_null($value)) {
                 continue;
             }
             $output[] = $this->getName() . '.' . $key . ' ' . $value;
