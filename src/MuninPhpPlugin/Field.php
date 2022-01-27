@@ -38,9 +38,12 @@ class Field
     public function getConfig()
     {
         $output = [];
-        $objectVars = array_filter(get_object_vars($this));
+        $objectVars = get_object_vars($this);
         foreach ($objectVars as $key => $value) {
             if (in_array($key, $this->filter)) {
+                continue;
+            }
+            if(is_null($value)){
                 continue;
             }
             $output[] = $this->getName() . '.' . $key . ' ' . $value;
