@@ -44,6 +44,11 @@ class Graph
     protected $fields;
     protected $filter = ['fields', 'filter'];
 
+    /**
+     * @var int label中最大汉字个数
+     */
+    protected $max_label_cn_characters = 0;
+
     public function __construct($graph_title, $graph_category = 'other')
     {
         $this->graph_title = $graph_title;
@@ -57,7 +62,7 @@ class Graph
 
         /** @var Field $field */
         foreach ($this->fields as $field) {
-            $output[] = $field->getConfig();
+            $output[] = $field->getConfig($this->max_label_cn_characters);
         }
         return implode(PHP_EOL, $output);
     }
@@ -69,8 +74,24 @@ class Graph
 
     public function appendField(Field $field)
     {
+        $field = $this->parseLabel($field);
         $this->fields[$field->getName()] = $field;
         return $this;
+    }
+
+    /**
+     * @param Field $field
+     * @return Field
+     */
+    private function parseLabel($field)
+    {
+        $label = $field->getLabel();
+        $hz_count = (mb_strwidth($label) - mb_strlen($label));
+        if($hz_count > $this->max_label_cn_characters)
+        {
+            $this->max_label_cn_characters = $hz_count;
+        }
+        return $field;
     }
 
     /**
@@ -80,6 +101,21 @@ class Graph
     public function getField($name)
     {
         return isset($this->fields[$name]) ? $this->fields[$name] : null;
+    }
+
+    /**
+     * @param string $name
+     * @param $value
+     * @return void
+     */
+    public function setFieldValue($name, $value)
+    {
+        $field = $this->getField($name);
+        if(is_null($field)){
+            return;
+        }
+
+        $field->setValue($value);
     }
 
     protected function getGraphConfig()

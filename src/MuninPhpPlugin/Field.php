@@ -35,7 +35,7 @@ class Field
         $this->name = $name;
     }
 
-    public function getConfig()
+    public function getConfig($max_hz_count)
     {
         $output = [];
         $objectVars = get_object_vars($this);
@@ -46,6 +46,14 @@ class Field
             if (is_null($value)) {
                 continue;
             }
+
+            if($key == 'label'){
+                $hz_count = mb_strwidth($value) - mb_strlen($value);
+                if($hz_count < $max_hz_count){
+                    $value .= str_repeat('　', $max_hz_count - $hz_count);
+                }
+            }
+
             $output[] = $this->getName() . '.' . $key . ' ' . $value;
         }
 
