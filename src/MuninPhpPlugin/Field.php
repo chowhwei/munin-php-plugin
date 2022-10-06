@@ -5,6 +5,7 @@ namespace Chowhwei\MuninPhpPlugin;
 /**
  * Field
  * @see http://munin-monitoring.org/wiki/protocol-config
+ * @see http://guide.munin-monitoring.org/en/latest/reference/plugin.html#data-source-attributes
  */
 class Field
 {
