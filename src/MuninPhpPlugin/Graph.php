@@ -72,6 +72,10 @@ class Graph
         return $this->fields->getValues();
     }
 
+    /**
+     * @param Field $field
+     * @return $this
+     */
     public function appendField(Field $field)
     {
         $field = $this->parseLabel($field);
@@ -106,16 +110,15 @@ class Graph
     /**
      * @param string $name
      * @param $value
-     * @return void
+     * @return $this
      */
     public function setFieldValue($name, $value)
     {
         $field = $this->getField($name);
-        if(is_null($field)){
-            return;
+        if(!is_null($field)){
+            $field->setValue($value);
         }
-
-        $field->setValue($value);
+        return $this;
     }
 
     protected function getGraphConfig()

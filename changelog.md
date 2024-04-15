@@ -1,3 +1,7 @@
+* 2024-04-15
+ 1.1.0
+ - Graph::setFieldValue returns $this
+
 * 2022-10-06
  1.0.5
  - fix 汉字label引起的不对齐问题
